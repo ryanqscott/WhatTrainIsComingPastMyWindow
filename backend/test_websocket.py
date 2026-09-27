@@ -1,8 +1,10 @@
 import asyncio
-import websockets
 import json
 import sys
 from datetime import datetime
+
+import websockets
+
 
 def describe_train(train):
     """One-line summary of a window record"""

@@ -435,6 +435,7 @@ def get() -> Location:
 if __name__ == "__main__":
     # python location.py [CODE]  - print what would be derived for a station
     import sys
+
     from dotenv import load_dotenv
     load_dotenv()
     logging.basicConfig(level=logging.INFO)

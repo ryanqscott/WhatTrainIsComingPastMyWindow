@@ -22,16 +22,16 @@ import websockets
 from dotenv import load_dotenv
 from kafka import KafkaConsumer
 
-load_dotenv()
+import appearance
+import location
+import nwr_schedule
+import rolling_stock
+from nwr_td import describer as train_describer
+from nwr_td import td_configured
+from operators import LINX_OPERATOR_NAMES
+from window_tracker import tracker as window_tracker
 
-# Imported after load_dotenv so ROLLING_STOCK_USER_AGENT and the NWR_* settings are picked up
-import appearance  # noqa: E402
-import location  # noqa: E402
-import nwr_schedule  # noqa: E402
-import rolling_stock  # noqa: E402
-from nwr_td import describer as train_describer, td_configured  # noqa: E402
-from operators import LINX_OPERATOR_NAMES  # noqa: E402
-from window_tracker import tracker as window_tracker  # noqa: E402
+load_dotenv()
 
 log = logging.getLogger("backend")
 

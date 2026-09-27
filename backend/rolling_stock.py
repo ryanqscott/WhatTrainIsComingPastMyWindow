@@ -40,11 +40,8 @@ SPOTLOG_BASE = "https://spotlog.org/locolist"
 COMMONS_API = "https://commons.wikimedia.org/w/api.php"
 WIKIPEDIA_SUMMARY = "https://en.wikipedia.org/api/rest_v1/page/summary/"
 
-# Wikimedia asks API clients to identify themselves with contact details
-USER_AGENT = os.getenv(
-    "ROLLING_STOCK_USER_AGENT",
-    "WhatTrainIsComingPastMyWindow/0.1 (personal train tracker; python-urllib)",
-)
+# Wikimedia asks API clients to identify themselves with contact details (ROLLING_STOCK_USER_AGENT)
+DEFAULT_USER_AGENT = "WhatTrainIsComingPastMyWindow/0.1 (personal train tracker; python-urllib)"
 
 SPOTLOG_CLASS_TTL = 7 * 24 * 3600
 SPOTLOG_CODES_TTL = 30 * 24 * 3600
@@ -65,7 +62,9 @@ _STOPWORDS = {
 def _http_get_json(url: str, params: dict | None = None):
     if params:
         url = f"{url}?{urllib.parse.urlencode(params)}"
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "application/json"})
+    # Read per request (not at import) so it doesn't matter when .env is loaded
+    user_agent = os.getenv("ROLLING_STOCK_USER_AGENT") or DEFAULT_USER_AGENT
+    req = urllib.request.Request(url, headers={"User-Agent": user_agent, "Accept": "application/json"})
     with urllib.request.urlopen(req, timeout=HTTP_TIMEOUT) as resp:
         return json.loads(resp.read().decode("utf-8", "replace"))
 
