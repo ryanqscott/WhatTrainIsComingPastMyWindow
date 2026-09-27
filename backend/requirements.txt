@@ -1,0 +1,4 @@
+## Dependencies
+kafka-python-ng
+websockets==12.0
+python-dotenv==1.0.0

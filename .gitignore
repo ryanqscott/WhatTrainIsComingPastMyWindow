@@ -1,0 +1,33 @@
+# Secrets (copy backend/.env.example to backend/.env)
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*/.venv/
+.ruff_cache/
+.pytest_cache/
+
+# Backend runtime data: downloaded Rail Data Marketplace files, API caches and logs
+backend/data/
+backend/cache/
+backend/train_allocations.csv
+backend/darwin_trains*.csv
+
+# RDM documentation (download it from the LINX product page on the Rail Data Marketplace)
+*.pdf
+
+# Frontend
+node_modules/
+frontend/dist/
+
+# Editors, OS and local tool settings
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+.claude/settings.local.json
